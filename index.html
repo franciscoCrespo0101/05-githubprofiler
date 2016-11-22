@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="" ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container" ng-controller="GithubController as github">
+        <div class="form-group">
+            <div class="well">
+                <h1><strong>GitHub Profiler</strong></h1>
+                <h5>Find out information about any Github user!</h5>
+            </div>
+            <form ng-submit="github.callGithubApi()">
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="github.username" placeholder="Enter user name">
+                    <span class="input-group-btn">
+                    <button class="btn btn-default" ng-href="">Go!</button>
+                </span>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <a href="https://github.com/{{github.data.login}}?tab=repositories" data-toggle="tooltip" title="click to see public repositories">
+                    <img ng-src="{{github.data.avatar_url}}" class="img-circle img-responsive">
+                </a>
+                <p class="lead text-center"><b>{{github.data.name}} {{github.data.login}}</b>
+                </p>
+                <p class="lead text-center">{{github.data.location}}</p>
+                <span ng-class="github.data.hirable? 'text-success' : 'text-danger'">
+                <p id="hide2" style="visibility: hidden;" class="lead text-center" >{{github.data.hireable ? 'I am hirable' : 'I am not hirable'}}</p>
+                </span>
+                <p id="hide" style="visibility: hidden;" class="lead text-center">Slinging code since {{github.data.created_at | date:'MMM-d-yyyy'}}</p>
+            </div>
+            <div class="col-sm-3">
+                <div class="well">
+                    <p class="lead text-center">Followers</p>
+                    <p class="lead text-center">{{github.data.followers}}</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="well">
+                    <p class="lead text-center">Following</p>
+                    <p class="lead text-center">{{github.data.following}}</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="well">
+                    <p class="lead text-center">Public Repositories</p>
+                    <p class="lead text-center">{{github.data.public_repos}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="//code.jquery.com/jquery.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="app/app.module.js"></script>
+    <script src="app/home/home.controller.js"></script>
+</body>
+
+</html>
