@@ -5,9 +5,9 @@
         .module('app')
         .controller('GithubController', GithubController);
 
-    GithubController.$inject = ['$http'];
+    GithubController.$inject = ['$https'];
 
-    function GithubController($http) {
+    function GithubController($https) {
         var vm = this;
         vm.callGithubApi = callGithubApi;
 
@@ -21,7 +21,7 @@
         function callGithubApi() {
 
             $http
-                .get('http://api.github.com/users/' + vm.username + '?access_token=')
+                .get('https://api.github.com/users/' + vm.username + '?access_token=')
                 .then(function(response) {
 
                     vm.data = response.data;
