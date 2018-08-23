@@ -21,7 +21,7 @@
         function callGithubApi() {
 
             $http
-                .get('http://api.github.com/users/' + vm.username + '?access_token=164417f80dc8dbb5709fb9e36661a0712dc2ec32')
+                .get('http://api.github.com/users/' + vm.username + '?access_token=')
                 .then(function(response) {
 
                     vm.data = response.data;
